@@ -2,6 +2,8 @@
 import inquirer from "inquirer";
 import Truck from "./Truck.js";
 import Car from "./Car.js";
+import Motorbike from "./Motorbike.js";
+import Wheel from "./Wheel.js";
 // define the Cli class
 class Cli {
     // TODO: Update the constructor to accept Truck and Motorbike objects as well
@@ -47,7 +49,7 @@ class Cli {
                 name: "vehicleType",
                 message: "Select a vehicle type",
                 // TODO: Update the choices array to include Truck and Motorbike
-                choices: ["Car", "Truck"],
+                choices: ["Car", "Truck", "Motorbike"],
             },
         ])
             .then((answers) => {
@@ -56,8 +58,11 @@ class Cli {
                 this.createCar();
             }
             // TODO: add statements to create a truck or motorbike if the user selects the respective vehicle type
-            else {
+            else if (answers.vehicleType === "Truck") {
                 this.createTruck();
+            }
+            else {
+                this.createMotorbike();
             }
         });
     }
@@ -217,9 +222,16 @@ class Cli {
         ])
             .then((answers) => {
             // TODO: Use the answers object to pass the required properties to the Motorbike constructor
+            const motorbike = new Motorbike(Cli.generateVin(), answers.color, answers.make, answers.model, parseInt(answers.year), parseInt(answers.weight), parseInt(answers.topSpeed), [
+                new Wheel(parseInt(answers.frontWheelDiameter), answers.frontWheelBrand),
+                new Wheel(parseInt(answers.rearWheelDiameter), answers.rearWheelBrand),
+            ]);
             // TODO: push the motorbike to the vehicles array
+            this.vehicles.push(motorbike);
             // TODO: set the selectedVehicleVin to the vin of the motorbike
+            this.selectedVehicleVin = motorbike.vin;
             // TODO: perform actions on the motorbike
+            this.performActions();
         });
     }
     // method to find a vehicle to tow
@@ -358,6 +370,16 @@ class Cli {
                 }
             }
             // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
+            else if (answers.action === "Wheelie") {
+                // find the selected vehicle and perform a wheelie
+                for (let i = 0; i < this.vehicles.length; i++) {
+                    if (this.vehicles[i].vin === this.selectedVehicleVin) {
+                        if (this.vehicles[i] instanceof Motorbike) {
+                            this.vehicles[i].wheelie();
+                        }
+                    }
+                }
+            }
             else if (answers.action === "Select or create another vehicle") {
                 // start the cli to return to the initial prompt if the user wants to select or create another vehicle
                 this.startCli();

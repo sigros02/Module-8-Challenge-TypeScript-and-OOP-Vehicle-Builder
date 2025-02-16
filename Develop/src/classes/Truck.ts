@@ -51,7 +51,7 @@ class Truck extends Vehicle implements AbleToTow {
   }
 
   // TODO: Implement the tow method from the AbleToTow interface
-  tow(vehicle: Truck | Car): void {
+  tow(vehicle: Truck | Motorbike | Car): void {
     // TODO: Get the make an model of the vehicle if it exists
     const make = vehicle.make;
     const model = vehicle.model;
