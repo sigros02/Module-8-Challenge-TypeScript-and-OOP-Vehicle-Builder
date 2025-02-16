@@ -14,10 +14,16 @@ class Wheel {
   get getDiameter(): number {
     return this.diameter;
   }
-
-  // Setter method for the diameter property
   get getTireBrand(): string {
     return this.tireBrand;
+  }
+
+  // Setter method for the diameter property
+  set setDiameter(diameter: number) {
+    this.diameter = diameter;
+  }
+  set setTireBrand(tireBrand: string) {
+    this.tireBrand = tireBrand;
   }
 }
 
