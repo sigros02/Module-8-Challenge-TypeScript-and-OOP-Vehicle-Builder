@@ -405,6 +405,8 @@ class Cli {
               if (this.vehicles[i] instanceof Truck) {
                 this.findVehicleToTow(this.vehicles[i] as Truck);
                 return;
+              } else {
+                console.log("Only trucks can tow");
               }
             }
           }
@@ -419,8 +421,7 @@ class Cli {
               }
             }
           }
-        }
-        else if (answers.action === "Select or create another vehicle") {
+        } else if (answers.action === "Select or create another vehicle") {
           // start the cli to return to the initial prompt if the user wants to select or create another vehicle
           this.startCli();
           return;

@@ -366,6 +366,9 @@ class Cli {
                             this.findVehicleToTow(this.vehicles[i]);
                             return;
                         }
+                        else {
+                            console.log("Only trucks can tow");
+                        }
                     }
                 }
             }
