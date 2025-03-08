@@ -1,3 +1,5 @@
+[Link to application demonstration video](https://drive.google.com/file/d/1HhxiroeYchifOLbeZmhjyjht92ZyWyc7/view?usp=sharing)
+
 # 08 TypeScript and OOP: Vehicle Builder
 
 ## Your Task
